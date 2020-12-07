@@ -8,11 +8,21 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-
+@Repository("postgresTrip")
 public class TripDataAccessService implements TripDao {
 
+    private final JdbcTemplate jdbcTemplate;
+
+    public TripDataAccessService(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
     @Override
-    public int insertPerson(UUID id, Trip trip) {
+    public int insertTrip(UUID id, Trip trip) {
+        final String sql = "INSERT INTO trip (id, host, description, long, lat, start, end, budget, currency)" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql, id, trip.getHost(), trip.getDescription(), trip.getLongitude(),
+                trip.getLatitude(), trip.getStart(), trip.getEnd(), trip.getBudget(), trip.getCurrency());
         return 0;
     }
 

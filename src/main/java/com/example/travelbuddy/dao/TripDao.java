@@ -8,11 +8,11 @@ import java.util.UUID;
 
 public interface TripDao {
 
-    int insertPerson(UUID id, Trip trip);
+    int insertTrip(UUID id, Trip trip);
 
-    default int insertPerson(Trip trip) {
+    default int insertTrip(Trip trip) {
         UUID id = UUID.randomUUID();
-        return insertPerson(id, trip);
+        return insertTrip(id, trip);
     }
 
     List<Trip> selectAllTrips();
