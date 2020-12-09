@@ -1,5 +1,6 @@
 package com.example.travelbuddy.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.NotBlank;
@@ -11,7 +12,7 @@ public class Trip {
     private final UUID id;
 
     @NotBlank
-    private final int host;
+    private final UUID host;
 
     @NotBlank
     private final String description;
@@ -34,8 +35,8 @@ public class Trip {
     @NotBlank
     private final String currency;
 
-    public Trip(@JsonProperty("id") UUID id, @JsonProperty("host") int host, @NotBlank String description, @NotBlank double longitude,
-                @NotBlank double latitude, @NotBlank Date start, @NotBlank Date end, @NotBlank int budget, @NotBlank String currency) {
+    public Trip(@JsonProperty("id") UUID id, @JsonProperty("host") UUID host, @NotBlank String description, @NotBlank double longitude,
+                @NotBlank double latitude, @JsonFormat(pattern="yyyy-MM-dd") @NotBlank Date start, @JsonFormat(pattern="yyyy-MM-dd") @NotBlank Date end, @NotBlank int budget, @NotBlank String currency) {
         this.id = id;
         this.host = host;
         this.description = description;
@@ -65,6 +66,6 @@ public class Trip {
 
     public String getCurrency() { return currency; }
 
-    public int getHost() { return host; }
+    public UUID getHost() { return host; }
 
 }

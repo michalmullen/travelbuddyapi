@@ -32,11 +32,11 @@ public class TripService {
         return tripDao.selectTripById(id);
     }
 
-    public int deletePerson(UUID id) {
+    public int deleteTrip(UUID id) {
         return tripDao.deleteTripById(id);
     }
 
-    public int updatePerson(UUID id, Trip newTrip) {
+    public int updateTrip(UUID id, Trip newTrip) {
         return tripDao.updateTripById(id, newTrip);
     }
 }
